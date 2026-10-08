@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список студентов</title>
+</head>
+<body>
+<h2>Список студентов</h2>
+<div>
+  <a th:href="@{/students/add}">Добавить студента</a> |
+  <a th:href="@{/login}">Выйти</a>
+</div>
+<br>
+<table border="1">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Имя</th>
+    <th>Курс</th>
+    <th>Задолженность</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="student : ${students}">
+    <td th:text="${student.id}"></td>
+    <td th:text="${student.name}"></td>
+    <td th:text="${student.course}"></td>
+    <td th:text="${student.hasDebt} ? 'Есть' : 'Нет'"></td>
+  </tr>
+  <tr th:if="${#lists.isEmpty(students)}">
+    <td colspan="4">Список студентов пуст</td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>
